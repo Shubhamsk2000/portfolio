@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+html {
+    scroll-behavior: smooth;
+    font-family: "Reem Kufi", sans-serif;
+}
+
+:root {
+    --primary-color: #06203F;
+    --secondary-color: #030C18;
+    --text-size: 16px;
+    --heading-size: 24px;
+    --text-color: #FFFFFF;
+    --heading-color: #FFFFFF;
+    --window-padding: 3rem;
+    --section-padding: 9rem;
+    --com-color: #ff4d5a;
+}
