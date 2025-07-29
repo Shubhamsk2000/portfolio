@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 const RightContainer = ({ children }) => {
   return (
     <motion.div
-      className="h-[70vh] flex-1 bg-[var(--primary-color)] shadow-lg overflow-hidden relative w-full items-center justify-center"
+      className="h-[70vh] flex-1 bg-[var(--primary-color)] shadow-lg overflow-hidden relative w-full items-center justify-center rounded-2xl"
       initial={{ scale: 0.8, opacity: 0, x: 50 }}
       whileInView={{ scale: 1, opacity: 1, x: 0 }}
       viewport={{ once: false, amount: 0.3 }}

@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Background from "./components/Background";
 import Navbar from "./components/Navbar";
 import { sections } from "./data/sections";
 import SectionContent from "./components/SectionContent";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const SCROLL_LOCK_TIME = 1000;
 
@@ -14,14 +14,16 @@ const App = () => {
   const lastScrollTime = useRef(0);
   const [isLocked, setIsLocked] = useState(false);
 
+  // Memoize lockScroll function
+  const lockScroll = useCallback(() => {
+    setIsLocked(true);
+    setTimeout(() => setIsLocked(false), SCROLL_LOCK_TIME);
+  }, []);
+
   useEffect(() => {
     const handleWheel = (e) => {
-       setTimeout(() => {
-        
-      }, 200);
       e.preventDefault(); 
       
-      console.log(e.deltaY)
       const now = Date.now();
 
       if (isLocked || now - lastScrollTime.current < SCROLL_LOCK_TIME) {
@@ -42,29 +44,20 @@ const App = () => {
         lastScrollTime.current = now;
         lockScroll();
       }
-
-    };
-
-    const lockScroll = () => {
-      setIsLocked(true);
-      setTimeout(() => setIsLocked(false), SCROLL_LOCK_TIME);
     };
 
     window.addEventListener("wheel", handleWheel, { passive: false });
     return () => window.removeEventListener("wheel", handleWheel);
-  }, [index, isLocked, totalSections]);
+  }, [index, isLocked, totalSections, lockScroll]);
 
-
-  const goToSection = (sectionIndex) => {
+  // Memoize goToSection function
+  const goToSection = useCallback((sectionIndex) => {
     if (sectionIndex >= totalSections || sectionIndex < 0) return;
-
     if (isLocked) return;
 
     setIndex(sectionIndex);
-    setIsLocked(true);
-    setTimeout(() => setIsLocked(false), SCROLL_LOCK_TIME);
-  };
-
+    lockScroll();
+  }, [totalSections, isLocked, lockScroll]);
 
   return (
     <div className="relative h-screen w-full overflow-hidden text-white">
@@ -76,8 +69,8 @@ const App = () => {
         transition={{ duration: 0.7, ease: "easeInOut" }}
         className=""
       >
-        {sections.map((section) => (
-          <div key={section.id} className="h-screen flex items-center justify-center w-full">
+        {sections.map((section, idx) => (
+          <div key={idx} className="h-screen flex items-center justify-center w-full">
             <SectionContent section={section} />
           </div>
         ))}

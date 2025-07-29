@@ -1,32 +1,45 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'motion/react';
 import LeftElement from '../animations/LeftElement';
 import SpanLines from '../animations/SpanLines';
 import RightContainer from '../animations/RightContainer';
 
 const SkillsContent = () => {
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2, // 0.2s delay between each child
-        delayChildren: 0.1,   // small delay before starting
-      },
+  const skillSections = [
+    {
+      category: "Backend",
+      items: [
+        { name: "Node.js", icon: "/skill-icons/nodejs-icon.svg" },
+        { name: "Java", icon: "/skill-icons/java-icon.svg" },
+      ],
     },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
-  };
+    {
+      category: "Frontend",
+      items: [
+        { name: "React", icon: "/skill-icons/react-icon.svg" },
+        { name: "Next.js", icon: "/skill-icons/next-icon.svg" },
+        { name: "JavaScript", icon: "/skill-icons/javascript-icon.svg" },
+        { name: "TypeScript", icon: "/skill-icons/typescript-icon.svg" },
+      ],
+    },
+    {
+      category: "Database",
+      items: [
+        { name: "MongoDB", icon: "/skill-icons/mongo-icon.svg" },
+        { name: "PostgreSQL", icon: "/skill-icons/postgres.svg" },
+        { name: "MySQL", icon: "/skill-icons/mysql-icon.svg" },
+      ],
+    },
+    {
+      category: "Tools",
+      items: [{ name: "Git", icon: "/skill-icons/git-icon.svg" }],
+    },
+  ];
 
   return (
 
-    <div className="flex relative justify-between mx-[var(--section-padding)] gap-10">
-      <div className="flex justify-between items-center relative ">
+    <div className="flex relative justify-between mx-[var(--section-padding)] gap-10  h-full">
+      <div className="flex justify-between  relative mt-10">
         <LeftElement>
           <div className="text-[75px] font-semibold -space-y-6 mb-5">
             <h1>Skills &</h1>
@@ -34,68 +47,50 @@ const SkillsContent = () => {
           </div>
           <SpanLines />
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            className="text-2xl font-light group mt-10"
-          >
-            {["Backend", "Frontend", "Database", "Tools"].map((item) => (
-              <motion.p key={item} variants={itemVariants}>
-                {item}
-              </motion.p>
-            ))}
-          </motion.div>
-
         </LeftElement>
       </div>
-      
-        <RightContainer>
-            <div className="grid grid-cols-2 gap-8 max-w-md">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-blue-400">Frontend</h3>
-                <ul className="space-y-2 text-gray-300">
-                  <li>React</li>
-                  <li>Next.js</li>
-                  <li>Vue.js</li>
-                  <li>TypeScript</li>
-                  <li>Tailwind CSS</li>
-                </ul>
+
+      <RightContainer>
+        <div className="h-full w-full flex flex-col justify-center overflow-hidden">
+          <div className="flex flex-col justify-center space-y-4 max-h-full">
+            {skillSections.map((section, index) => (
+              <div key={section.category} className="w-full">
+                {/* Row: category on left, icons on right */}
+                <div className="flex items-center w-full">
+                  {/* Category name */}
+                  <div className="w-1/3 pr-4">
+                    <h2 className="text-lg font-semibold text-white">{section.category}</h2>
+                  </div>
+
+                  {/* Icons */}
+                  <div className="w-2/3 flex gap-3 flex-wrap justify-start">
+                    {section.items.map((item) => (
+                      <div
+                        key={item.name}
+                        className="flex flex-col items-center justify-between group transition-transform p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 hover:scale-105 duration-300 w-[80px] h-[80px]"
+                      >
+                        <div className="flex items-center justify-center h-10 w-10">
+                          <img
+                            src={item.icon}
+                            alt={item.name}
+                            className="w-9 h-9 hover:scale-110 transition-transform duration-200 object-contain"
+                          />
+                        </div>
+                        <span className="text-xs text-white/70 text-center leading-tight">{item.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {index !== skillSections.length - 1 && (
+                  <hr className="border-white/10 my-3" />
+                )}
               </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-green-400">Backend</h3>
-                <ul className="space-y-2 text-gray-300">
-                  <li>Node.js</li>
-                  <li>Express.js</li>
-                  <li>Python</li>
-                  <li>Django</li>
-                  <li>FastAPI</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-purple-400">Database</h3>
-                <ul className="space-y-2 text-gray-300">
-                  <li>MongoDB</li>
-                  <li>PostgreSQL</li>
-                  <li>MySQL</li>
-                  <li>Redis</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-orange-400">Tools</h3>
-                <ul className="space-y-2 text-gray-300">
-                  <li>Git</li>
-                  <li>Docker</li>
-                  <li>AWS</li>
-                  <li>Postman</li>
-                </ul>
-              </div>
-            </div>
-        </RightContainer>
+            ))}
+          </div>
+        </div>
+      </RightContainer>
+
 
     </div>
 

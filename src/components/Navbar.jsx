@@ -10,7 +10,7 @@ const Navbar = ({ goToSection, currentIndex }) => {
                         <button
                             key={label}
                             onClick={()=>goToSection(i)}
-                            className={`hover:text-amber-100 ${currentIndex === i ? "hover:text-amber-100 underline" : ""}`}
+                            className={`hover:text-amber-100 ${currentIndex === i ? "hover:text-amber-100 underline" : ""} cursor-pointer`}
                         >
                             {label}
                         </button>

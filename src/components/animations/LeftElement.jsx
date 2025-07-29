@@ -13,7 +13,7 @@ const LeftElement = ({ children }) => {
               type: "spring",
               damping: 30,
               stiffness: 100,
-              opacity: { duration: 0.8, ease: "easeOut" }
+              opacity: { duration: 0.8, ease: "easeOut" },
             }
           }
         }}

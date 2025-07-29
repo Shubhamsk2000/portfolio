@@ -6,7 +6,7 @@ html {
 }
 
 :root {
-    --primary-color: #06203F;
+    --primary-color: #072D5A;
     --secondary-color: #030C18;
     --text-size: 16px;
     --heading-size: 24px;
@@ -15,4 +15,32 @@ html {
     --window-padding: 3rem;
     --section-padding: 9rem;
     --com-color: #ff4d5a;
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+/* Skill icon container styling */
+.skill-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-icon-container:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }

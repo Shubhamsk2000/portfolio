@@ -1,5 +1,6 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'motion/react'
 
 const SpanLines = () => {
 
@@ -29,7 +30,7 @@ const SpanLines = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.3 }}
         >
             <motion.div
                 className="h-1 bg-[#ff4d5a] rounded-4xl w-24"

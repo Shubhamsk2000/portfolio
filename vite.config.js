@@ -8,4 +8,27 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Separate vendor chunks for better caching
+          vendor: ['react', 'react-dom'],
+          motion: ['motion/react', 'framer-motion'],
+        },
+      },
+    },
+    // Enable compression and minification
+    minify: 'esbuild', // Use esbuild instead of terser (faster)
+  },
+  // Enable faster dev server
+  server: {
+    hmr: {
+      overlay: false
+    }
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'motion/react']
+  }
 })
