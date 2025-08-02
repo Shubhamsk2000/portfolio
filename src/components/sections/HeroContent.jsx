@@ -60,12 +60,12 @@ export default function HeroContent() {
         <div className='text-2xl font-light mt-10'>
           <p>Fullstack Developer</p>
           <div className="flex gap-4 mt-6">
-            <button className="bg-[var(--com-color)] text-white px-8 py-2 rounded-full font-light 
+            {/* <button className="bg-[var(--com-color)] text-white px-8 py-2 rounded-full font-light 
                              hover:bg-[var(--com-color)]/80 transition-all duration-300 
                              shadow-lg hover:shadow-xl border-2 border-transparent 
                              hover:border-[var(--com-color)]/30 backdrop-blur-sm cursor-pointer">
               Contact
-            </button>
+            </button> */}
             <button
               className="bg-[var(--com-color)] text-white font-light py-2 px-8 rounded-full 
                              hover:bg-[var(--com-color)]/80 transition-all duration-300 
